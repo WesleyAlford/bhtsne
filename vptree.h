@@ -99,6 +99,28 @@ double euclidean_distance(const DataPoint &t1, const DataPoint &t2) {
     return sqrt(dd);
 }
 
+double cosine_distance(const DataPoint &t1, const DataPoint &t2) {
+    double* x1 = t1._x;
+    double* x2 = t2._x;
+    double dotProd = 0;
+	double magSumx1 = 0;
+	double magSumx2 = 0;
+	double magx1 = 0;
+	double magx2 = 0;
+	double cosSim = 0;
+	double pi = 3.1415926535897;
+	
+    for(int d = 0; d < t1._D; d++) {
+        dotProd += (x1[d] * x2[d]);
+		magSumx1 += (x1[d] * x1[d]);
+		magSumx2 += (x2[d] * x2[d]);
+    }
+	magx1 = sqrt(magSumx1)
+	magx2 = sqrt(magSumx2)
+	cosSim = dotprod / ( magx1 * magx2)
+    return acos(cosSim) / pi;
+}
+
 
 template<typename T, double (*distance)( const T&, const T& )>
 class VpTree
